@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 // Health endpoints always available
-app.get('/api/ping', (_req, res) => res.status(200).send('pong'));
+// app.get('/api/ping', (_req, res) => res.status(200).send('pong'));
 let dbReady = false;
 app.get('/api/ready', (_req, res) => res.json({ dbReady }));
 

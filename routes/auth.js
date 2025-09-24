@@ -7,6 +7,11 @@ module.exports = (client, collections) => {
     const router = express.Router()
     const { users, profiles, trails } = collections
 
+    router.get('/ping', (_req, res) => {
+        console.log('pong')
+        res.status(200).send('pong')
+    })
+
     router.post("/register", async (req, res) => {
         const { userName, password } = req.body
         const userNameCaseInsensitive = userName.toLowerCase()
