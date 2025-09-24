@@ -70,15 +70,18 @@ module.exports = (client, collections) => {
         const { userName, password } = req.body;
         const { validateLoginInput } = require("../utils/validateUserInput");
         const userNameCaseInsensitive = userName.toLowerCase();
+        console.log('logging user in...')
+        console.log('usrname: ', userName, 'password', password)
 
         // Validate inputs
+        console.log('validating...')
         const errors = validateLoginInput({ userName, password });
         if (errors.length > 0) {
             return res.status(400).json({ errors });
         }
 
         try {
-
+            console.log('finding user...')
             const user = await users.findOne({ userName: userNameCaseInsensitive });
             if (!user) {
                 return res.status(401).json({ error: "Invalid Credentials" });
@@ -89,11 +92,14 @@ module.exports = (client, collections) => {
                 return res.status(401).json({ error: "Incorrect Credentials" });
             }
 
+            console.log('signing jwt token...')
             const token = jwt.sign(
                 { userId: user._id, userName: user.userName },
                 process.env.JWT_SECRET,
                 { expiresIn: "1h" }
             );
+
+            console.log('success...')
 
             return res.json({ message: "User logged in successfully", token });
         } catch (error) {
