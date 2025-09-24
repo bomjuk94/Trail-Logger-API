@@ -19,6 +19,7 @@ const devOrigins = new Set([
     'http://localhost:5000',
     'http://127.0.0.1:5000',
     'http://localhost:8081',
+    'http://localhost:8000',
 ]);
 
 (process.env.CORS_ORIGINS || "")
@@ -28,10 +29,12 @@ const devOrigins = new Set([
     .forEach((o) => devOrigins.add(o));
 
 function isAllowedOrigin(origin) {
+    console.log('checking allowed origins')
     if (!origin) return true;
     try {
         const u = new URL(origin);
         const host = u.host;
+        console.log('host', host)
         if (devOrigins.has(origin)) return true;
         if (host.endsWith('.vercel.app')) return true;          // your web client
         if (host.endsWith('.trycloudflare.com')) return true;   // tunnels
