@@ -18,6 +18,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.19.0",
+    "morgan": "^1.10.1",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
