@@ -14,11 +14,11 @@ The backend for the trail logger application, built with Node.js, Express, and M
 
 ### 1. Clone the repo  
 
-git clone https://github.com/bomjuk94/Digital-Garden-API  
+git clone https://github.com/bomjuk94/Trail-Logger-API   
 
 ### 2. Install Dependencies  
 
-cd Digital-Garden-API-main  
+cd Trail-Logger-API-main  
 npm install  
 
 ### 3. Setup environment variables  
@@ -29,7 +29,7 @@ JWT_SECRET=your_jwt_secret
 
 ### 4. Start the Server  
 
-npm run dev  
+npm run start or dev  
 
 ### API Endpoints  
 
@@ -41,76 +41,16 @@ POST /api/login
 
 #### Profile  
 
-GET /api/profile/  
+GET /api/profile  
 
-PATCH /api/profile/balance  
+PUT /api/profile/save   
 
-PUT /api/profile/update  
+#### Trails  
 
-PATCH /api/profile/usedPlantCapacity  
+GET /api/trails  
 
-PATCH /api/profile/onboardingStatus  
+PUT /trails/:id
 
-#### Seeds  
+#### Weather  
 
-GET /api/seeds  
-
-PATCH /api/seeds/decrement  
-
-PUT /api/seeds/count  
-
-PUT /api/seeds/unlock  
-
-PUT /api/seeds/update    
-
-#### Inventory
-
-GET /api/inventory  
-
-PATCH /api/inventory/count  
-
-PUT /api/inventory/update  
-
-#### Shop
-
-GET /api/shop  
-
-PUT /api/shop/update  
-
-#### Purchases
-
-GET /api/purchases  
-
-PUT /api/purchases/update  
-
-#### Plants
-
-GET /api/plants  
-
-POST /api/plants/add  
-
-PATCH /api/plants/remove  
-
-PUT /api/plants/buffs  
-
-PUT /api/plants/update  
-
-#### Upgrades
-
-GET /api/upgrades  
-
-PATCH /api/upgrades/add  
-
-#### Supplies
-
-GET /api/supplies  
-
-PATCH /api/supplies/add  
-
-PATCH /api/supplies/remove  
-
-#### Garden
-
-GET /api/garden  
-
-PUT /api/garden/update  
+GET /proxy/icon/:file  
