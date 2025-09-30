@@ -7,12 +7,10 @@ module.exports = (client, collections) => {
     const router = express.Router();
     const { users, profiles, trails } = collections;
 
-    // Health check
     router.get("/ping", (_req, res) => {
         res.status(200).json({ ok: true, message: "pong" });
     });
 
-    // Register
     router.post("/register", async (req, res) => {
         const { userName, password } = req.body;
         const { validateRegistrationInput } = require("../utils/validateUserInput");
@@ -63,7 +61,6 @@ module.exports = (client, collections) => {
         }
     });
 
-    // Login
     router.post("/login", async (req, res) => {
         const { userName, password } = req.body;
         const { validateLoginInput } = require("../utils/validateUserInput");
@@ -92,7 +89,6 @@ module.exports = (client, collections) => {
         }
     });
 
-    // Profile
     router.get("/profile", authenticateToken, async (req, res) => {
         const { ObjectId } = require("bson");
         const userId = new ObjectId(req.user.userId);
@@ -108,7 +104,6 @@ module.exports = (client, collections) => {
         }
     });
 
-    // Save profile
     router.put("/profile/save", authenticateToken, async (req, res) => {
         const { ObjectId } = require("bson");
         const userId = new ObjectId(req.user.userId);
@@ -165,7 +160,6 @@ module.exports = (client, collections) => {
         }
     });
 
-    // Get trails
     router.get("/trails", authenticateToken, async (req, res) => {
         const { ObjectId } = require("bson");
         const userId = new ObjectId(req.user.userId);
@@ -181,7 +175,6 @@ module.exports = (client, collections) => {
         }
     });
 
-    // Save/update trail
     router.put("/trails/:id", authenticateToken, async (req, res) => {
         const { ObjectId } = require("bson");
         const userId = new ObjectId(req.user.userId);
@@ -228,7 +221,6 @@ module.exports = (client, collections) => {
         }
     });
 
-    // Weather icon proxy
     router.get("/proxy/icon/:file", async (req, res) => {
         const file = req.params.file;
         const url = `https://openweathermap.org/img/wn/${file}`;

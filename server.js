@@ -67,11 +67,9 @@ app.listen(PORT, () => {
         console.log("✅ API routes mounted");
     } catch (err) {
         console.error("❌ MongoDB connection error:", err.message);
-        // Optionally: retry with setTimeout(...)
     }
 })();
 
-// --- Graceful shutdown ---
 process.on("SIGTERM", async () => {
     try {
         await client?.close();
